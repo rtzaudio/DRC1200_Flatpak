@@ -1,0 +1,58 @@
+app-id: org.flatpak.DRC1200
+runtime: org.gnome.Platform
+runtime-version: '51'
+sdk: org.gnome.Sdk
+command: DRC1200
+
+finish-args:
+  - --share=ipc
+  - --socket=x11
+  - --socket=wayland
+  - --device=dri
+  - --share=network
+  - --unset-env=GTK_MODULES
+  # Uncomment if your app needs these:
+  # - --socket=pulseaudio
+  # - --filesystem=home
+
+modules:
+  # --- wxWidgets, built from source since it's not part of any runtime ---
+  - name: wxwidgets
+    buildsystem: simple
+    build-commands:
+      - >-
+        ./configure
+        --prefix=/app
+        --with-gtk=3
+        --disable-debug
+        --disable-tests
+      - make -j$FLATPAK_BUILDER_N_JOBS
+      - make install
+    sources:
+      - type: archive
+        url: https://github.com/wxWidgets/wxWidgets/releases/download/v3.2.4/wxWidgets-3.2.4.tar.bz2
+        # Run: sha256sum wxWidgets-3.2.4.tar.bz2  (after downloading it once) and paste the result below.
+        sha256: 0640e1ab716db5af2ecb7389dbef6138d7679261fbff730d23845ba838ca133e
+
+  # --- Your application ---
+  - name: DRC1200
+    buildsystem: simple
+    build-options:
+      env:
+        PATH: /app/bin:/usr/bin
+    build-commands:
+      - make release -j$FLATPAK_BUILDER_N_JOBS
+      - install -Dm755 bin/Release/DRC1200 /app/bin/DRC1200
+      - install -Dm644 org.flatpak.DRC1200.desktop /app/share/applications/org.flatpak.DRC1200.desktop
+      - install -Dm644 org.flatpak.DRC1200.png /app/share/icons/hicolor/256x256/apps/org.flatpak.DRC1200.png
+      - install -Dm644 org.flatpak.DRC1200.appdata.xml /app/share/metainfo/org.flatpak.DRC1200.appdata.xml
+    sources:
+      - type: archive
+        path: /home/bob/Sandbox/DRC1200_Flatpak/DRC1200.tar.bz2
+        strip-components: 0
+      - type: file
+        path: org.flatpak.DRC1200.desktop
+      - type: file
+        path: org.flatpak.DRC1200.png
+      - type: file
+        path: org.flatpak.DRC1200.appdata.xml

@@ -1,0 +1,1 @@
+flatpak build-bundle ~/.local/share/flatpak/repo DRC1200.flatpak org.flatpak.DRC1200
