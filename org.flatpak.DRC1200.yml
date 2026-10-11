@@ -34,7 +34,7 @@ modules:
         # Run: sha256sum wxWidgets-3.2.4.tar.bz2  (after downloading it once) and paste the result below.
         sha256: 0640e1ab716db5af2ecb7389dbef6138d7679261fbff730d23845ba838ca133e
 
-  # --- Your application ---
+  # --- DRC1200 application ---
   - name: DRC1200
     buildsystem: simple
     build-options:
@@ -48,7 +48,7 @@ modules:
       - install -Dm644 org.flatpak.DRC1200.appdata.xml /app/share/metainfo/org.flatpak.DRC1200.appdata.xml
     sources:
       - type: archive
-        path: /home/bob/Sandbox/DRC1200_Flatpak/DRC1200.tar.bz2
+        url: https://github.com/rtzaudio/DRC1200/archive/refs/heads/main.zip
         strip-components: 0
       - type: file
         path: org.flatpak.DRC1200.desktop
