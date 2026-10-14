@@ -1,0 +1,35 @@
+# Build artifacts
+*.obj
+*.exe
+*.dll
+*.lib
+*.pdb
+*.ilk
+*.idb
+*.depend
+*.layout
+*.flatpak-builder
+
+# Visual Studio files
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.VC.db
+*.VC.opendb
+
+# Backup and temp
+*.log
+*.tmp
+*.bak
+
+# Build output
+x64/
+Debug/
+Release/
+DRC1200.layout
+DRC1200.depend
+*.layout
+*.depend
+.flatpak-builder

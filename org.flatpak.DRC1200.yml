@@ -11,9 +11,7 @@ finish-args:
   - --device=dri
   - --share=network
   - --unset-env=GTK_MODULES
-  # Uncomment if your app needs these:
-  # - --socket=pulseaudio
-  # - --filesystem=home
+  - --filesystem=home
 
 modules:
   # --- wxWidgets, built from source since it's not part of any runtime ---
@@ -47,9 +45,9 @@ modules:
       - install -Dm644 org.flatpak.DRC1200.png /app/share/icons/hicolor/256x256/apps/org.flatpak.DRC1200.png
       - install -Dm644 org.flatpak.DRC1200.appdata.xml /app/share/metainfo/org.flatpak.DRC1200.appdata.xml
     sources:
-      - type: archive
-        url: https://github.com/rtzaudio/DRC1200/archive/refs/heads/main.zip
-        strip-components: 0
+      - type: git
+        url: https://github.com/rtzaudio/DRC1200.git
+        branch: main
       - type: file
         path: org.flatpak.DRC1200.desktop
       - type: file

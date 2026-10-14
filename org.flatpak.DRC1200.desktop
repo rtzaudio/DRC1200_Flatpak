@@ -1,9 +1,10 @@
 [Desktop Entry]
 Type=Application
 Name=DRC1200
-Comment=DRC1200 Application
+Comment=Software remote control application
 Exec=DRC1200
 Icon=org.flatpak.DRC1200
 Terminal=false
 Categories=Utility;
 StartupNotify=true
+StartupWMClass=DRC1200
